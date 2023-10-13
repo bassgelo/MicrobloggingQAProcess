@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_167o586" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" camunda:diagramRelationId="ff8cf47a-63ef-4644-8457-00be3e1e3c6f">
+  <bpmn:process id="Process_simpleTQA_exercise4" isExecutable="true">
+    <bpmn:exclusiveGateway id="Gateway_0db6syt" name="tweet approved ?" default="Flow_1kw7irk">
+      <bpmn:incoming>Flow_07in80p</bpmn:incoming>
+      <bpmn:outgoing>Flow_1kw7irk</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0524c93</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="Event_11nccjr" name="Tweet published">
+      <bpmn:incoming>Flow_0xv72vj</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:startEvent id="StartEvent_1" name="Tweet wanted">
+      <bpmn:outgoing>Flow_17sdpyf</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_17sdpyf" sourceRef="StartEvent_1" targetRef="Activity_04qm8s7" />
+    <bpmn:sequenceFlow id="Flow_1kw7irk" name="Approved" sourceRef="Gateway_0db6syt" targetRef="Activity_1gd9a51" />
+    <bpmn:sequenceFlow id="Flow_0xv72vj" sourceRef="Activity_1gd9a51" targetRef="Event_11nccjr" />
+    <bpmn:sequenceFlow id="Flow_0524c93" name="Not Approved" sourceRef="Gateway_0db6syt" targetRef="Activity_1ws3d0o">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{not approved}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_07in80p" sourceRef="Activity_0mu7vg3" targetRef="Gateway_0db6syt" />
+    <bpmn:sequenceFlow id="Flow_05hxq9q" sourceRef="Activity_1ws3d0o" targetRef="Activity_0mu7vg3" />
+    <bpmn:serviceTask id="Activity_1gd9a51" name="Publish Tweet" camunda:delegateExpression="${createTwitterDelegate}">
+      <bpmn:incoming>Flow_1kw7irk</bpmn:incoming>
+      <bpmn:outgoing>Flow_0xv72vj</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0xh4kew" sourceRef="Activity_04qm8s7" targetRef="Activity_0mu7vg3" />
+    <bpmn:manualTask id="Activity_0mu7vg3" name="Approve Tweet">
+      <bpmn:incoming>Flow_05hxq9q</bpmn:incoming>
+      <bpmn:incoming>Flow_0xh4kew</bpmn:incoming>
+      <bpmn:outgoing>Flow_07in80p</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:manualTask id="Activity_1ws3d0o" name="Re-write Tweet">
+      <bpmn:incoming>Flow_0524c93</bpmn:incoming>
+      <bpmn:outgoing>Flow_05hxq9q</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:userTask id="Activity_04qm8s7" name="Write Tweet">
+      <bpmn:incoming>Flow_17sdpyf</bpmn:incoming>
+      <bpmn:outgoing>Flow_0xh4kew</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:textAnnotation id="TextAnnotation_1m4493o">
+      <bpmn:text>This is Review Tweet</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1u160mr" sourceRef="Activity_0mu7vg3" targetRef="TextAnnotation_1m4493o" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_simpleTQA_exercise4">
+      <bpmndi:BPMNEdge id="Flow_0xh4kew_di" bpmnElement="Flow_0xh4kew">
+        <di:waypoint x="360" y="207" />
+        <di:waypoint x="400" y="207" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05hxq9q_di" bpmnElement="Flow_05hxq9q">
+        <di:waypoint x="450" y="330" />
+        <di:waypoint x="450" y="247" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07in80p_di" bpmnElement="Flow_07in80p">
+        <di:waypoint x="500" y="207" />
+        <di:waypoint x="545" y="207" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0524c93_di" bpmnElement="Flow_0524c93">
+        <di:waypoint x="570" y="232" />
+        <di:waypoint x="570" y="370" />
+        <di:waypoint x="500" y="370" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="576" y="316" width="68" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0xv72vj_di" bpmnElement="Flow_0xv72vj">
+        <di:waypoint x="760" y="207" />
+        <di:waypoint x="832" y="207" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1kw7irk_di" bpmnElement="Flow_1kw7irk">
+        <di:waypoint x="595" y="207" />
+        <di:waypoint x="660" y="207" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="605" y="189" width="47" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17sdpyf_di" bpmnElement="Flow_17sdpyf">
+        <di:waypoint x="208" y="207" />
+        <di:waypoint x="260" y="207" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Gateway_0db6syt_di" bpmnElement="Gateway_0db6syt" isMarkerVisible="true">
+        <dc:Bounds x="545" y="182" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="528" y="158" width="84" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_11nccjr_di" bpmnElement="Event_11nccjr">
+        <dc:Bounds x="832" y="189" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="810" y="232" width="80" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="172" y="189" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="156" y="232" width="69" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_189extz_di" bpmnElement="Activity_1gd9a51">
+        <dc:Bounds x="660" y="167" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0b9l54j_di" bpmnElement="Activity_0mu7vg3">
+        <dc:Bounds x="400" y="167" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0sc2atu_di" bpmnElement="Activity_1ws3d0o">
+        <dc:Bounds x="400" y="330" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1m4493o_di" bpmnElement="TextAnnotation_1m4493o">
+        <dc:Bounds x="400" y="80" width="100" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1gul7it_di" bpmnElement="Activity_04qm8s7">
+        <dc:Bounds x="260" y="167" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1u160mr_di" bpmnElement="Association_1u160mr">
+        <di:waypoint x="450" y="167" />
+        <di:waypoint x="450" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

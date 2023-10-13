@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "465f2e4b-dd8a-406c-962d-73ce44f3c278",
+		"name": "Camunda Platform for Devs - Exercise10",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get process definitions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "deployment-name",
+							"value": "probo",
+							"type": "text"
+						},
+						{
+							"key": "deployment-source",
+							"value": "process application",
+							"type": "text"
+						},
+						{
+							"key": "data",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/process-definition",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"process-definition"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "start process instance key",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"variables\": {\n    \"content\" : {\n        \"value\" : \"Exercise REST API Tweet, more tries to come\",\n        \"type\": \"String\"\n    }\n  },\n \"businessKey\" : \"ProcessStarted_ByREST_\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/process-definition/key/Process_simpleTQA_exercise9/start",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"process-definition",
+						"key",
+						"Process_simpleTQA_exercise9",
+						"start"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get task no user",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "deployment-name",
+							"value": "probo",
+							"type": "text"
+						},
+						{
+							"key": "deployment-source",
+							"value": "process application",
+							"type": "text"
+						},
+						{
+							"key": "data",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/task",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "claim task",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userId\": \"demo\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/task/21f2d848-2156-11ec-bd53-00ff3a312339/claim",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"task",
+						"21f2d848-2156-11ec-bd53-00ff3a312339",
+						"claim"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "complete task",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/task/db369688-2154-11ec-bd53-00ff3a312339/complete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"task",
+						"db369688-2154-11ec-bd53-00ff3a312339",
+						"complete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get task by user",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "deployment-name",
+							"value": "probo",
+							"type": "text"
+						},
+						{
+							"key": "deployment-source",
+							"value": "process application",
+							"type": "text"
+						},
+						{
+							"key": "data",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/task?candidateGroup=management",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"task"
+					],
+					"query": [
+						{
+							"key": "candidateGroup",
+							"value": "management"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "complete task with vars",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"variables\": {\n    \"approved\": {\"value\": true}\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/task/21f2d848-2156-11ec-bd53-00ff3a312339/complete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"task",
+						"21f2d848-2156-11ec-bd53-00ff3a312339",
+						"complete"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

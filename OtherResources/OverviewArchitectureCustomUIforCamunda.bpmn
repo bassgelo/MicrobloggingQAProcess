@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0oozqw2" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:collaboration id="Collaboration_0prja88">
+    <bpmn:participant id="Participant_0vuvh7t" name="Camunda Engine" />
+    <bpmn:participant id="Participant_0thxcma" name="React Application / Angular JS" />
+    <bpmn:participant id="Participant_1pehdab" name="Back-end of App. Spring Boot app" />
+    <bpmn:messageFlow id="Flow_16di7pz" sourceRef="Participant_1pehdab" targetRef="Participant_0vuvh7t" />
+    <bpmn:messageFlow id="Flow_0k1rtlr" name="REST communication. Basic Security OR Keycloak JWT Validation." sourceRef="Participant_0vuvh7t" targetRef="Participant_1pehdab" />
+    <bpmn:messageFlow id="Flow_0hsrgrq" sourceRef="Participant_0thxcma" targetRef="Participant_1pehdab" />
+    <bpmn:messageFlow id="Flow_1gmr1tf" sourceRef="Participant_1pehdab" targetRef="Participant_0thxcma" />
+    <bpmn:group id="Group_1msgas6" categoryValueRef="CategoryValue_19oam5t" />
+    <bpmn:group id="Group_10hv1n2" categoryValueRef="CategoryValue_1qsrqe8" />
+    <bpmn:textAnnotation id="TextAnnotation_0c5xvsf">
+      <bpmn:text>With this architecture we avoid the case of 1:1 user task : Ui. And the organization has a lot of flexibility to create custom UI.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1amvrkq" sourceRef="Group_1msgas6" targetRef="TextAnnotation_0c5xvsf" />
+    <bpmn:textAnnotation id="TextAnnotation_0fgylfy">
+      <bpmn:text>Contacts the engine at very specific points. The modelling is easier, less user tasks, we concentrate on payloads not on UI.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0dssdti" sourceRef="Participant_1pehdab" targetRef="TextAnnotation_0fgylfy" />
+    <bpmn:textAnnotation id="TextAnnotation_08xq5tp">
+      <bpmn:text>We concentrate on UI itsefl.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0cdt1m2" sourceRef="Participant_0thxcma" targetRef="TextAnnotation_08xq5tp" />
+    <bpmn:textAnnotation id="TextAnnotation_1lup448">
+      <bpmn:text>Docker image</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0h4chvq" sourceRef="Group_10hv1n2" targetRef="TextAnnotation_1lup448" />
+    <bpmn:textAnnotation id="TextAnnotation_1qeji46">
+      <bpmn:text>Docker image</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1t5hxkd" sourceRef="Group_1msgas6" targetRef="TextAnnotation_1qeji46" />
+    <bpmn:textAnnotation id="TextAnnotation_1ngvuix">
+      <bpmn:text>Keycloack links:
+
+
+Keycloak Identity Provider Extension
+https://github.com/camunda-community-hub/camunda-bpm-identity-keycloak
+https://camunda.com/blog/2019/08/keycloak-identity-provider-extension/
+
+
+Camunda JWT REST API Validation Provider:
+https://github.com/DigitalState/camunda-rest-jwt-authentication
+
+
+Keycloak JWT Validator
+https://github.com/iceman91176/camunda-keycloak-validator
+
+
+Video
+https://page.camunda.com/ccs-von-der-beck-integrating-camunda-and-keycloak</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:group id="Group_1025xzm" categoryValueRef="CategoryValue_0w9qkz1" />
+  </bpmn:collaboration>
+  <bpmn:category id="Category_0xs3kdy">
+    <bpmn:categoryValue id="CategoryValue_19oam5t" value="Security with LDAP / Keycloak" />
+  </bpmn:category>
+  <bpmn:category id="Category_0nfz7z3">
+    <bpmn:categoryValue id="CategoryValue_1qsrqe8" value="Security with LDAP / Keycloak" />
+  </bpmn:category>
+  <bpmn:category id="Category_0w7asue">
+    <bpmn:categoryValue id="CategoryValue_0w9qkz1" value="Your Container file description e.g. Helm Chart" />
+  </bpmn:category>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0prja88">
+      <bpmndi:BPMNShape id="Participant_1h89th3_di" bpmnElement="Participant_0vuvh7t" isHorizontal="true">
+        <dc:Bounds x="750" y="640" width="940" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_19lpyqp_di" bpmnElement="Participant_0thxcma" isHorizontal="true">
+        <dc:Bounds x="750" y="280" width="940" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_18uip46_di" bpmnElement="Participant_1pehdab" isHorizontal="true">
+        <dc:Bounds x="750" y="370" width="950" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1ngvuix_di" bpmnElement="TextAnnotation_1ngvuix">
+        <dc:Bounds x="140" y="405" width="459.997404761629" height="299.99847072773815" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0c5xvsf_di" bpmnElement="TextAnnotation_0c5xvsf">
+        <dc:Bounds x="730" y="120" width="240" height="82" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0fgylfy_di" bpmnElement="TextAnnotation_0fgylfy">
+        <dc:Bounds x="1110" y="470" width="219.99908347859838" height="69.99864485054141" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_08xq5tp_di" bpmnElement="TextAnnotation_08xq5tp">
+        <dc:Bounds x="1090" y="162" width="180" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1lup448_di" bpmnElement="TextAnnotation_1lup448">
+        <dc:Bounds x="1600" y="540" width="100" height="30" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1qeji46_di" bpmnElement="TextAnnotation_1qeji46">
+        <dc:Bounds x="1600" y="470" width="100" height="30" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0cdt1m2_di" bpmnElement="Association_0cdt1m2">
+        <di:waypoint x="1202" y="280" />
+        <di:waypoint x="1155" y="202" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0dssdti_di" bpmnElement="Association_0dssdti">
+        <di:waypoint x="1202" y="430" />
+        <di:waypoint x="1171" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1amvrkq_di" bpmnElement="Association_1amvrkq">
+        <di:waypoint x="1022" y="230" />
+        <di:waypoint x="970" y="202" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1t5hxkd_di" bpmnElement="Association_1t5hxkd">
+        <di:waypoint x="1549" y="450" />
+        <di:waypoint x="1607" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0h4chvq_di" bpmnElement="Association_0h4chvq">
+        <di:waypoint x="1485" y="600" />
+        <di:waypoint x="1600" y="569" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16di7pz_di" bpmnElement="Flow_16di7pz">
+        <di:waypoint x="850" y="430" />
+        <di:waypoint x="850" y="640" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0k1rtlr_di" bpmnElement="Flow_0k1rtlr">
+        <di:waypoint x="890" y="640" />
+        <di:waypoint x="890" y="430" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="905" y="492" width="90" height="66" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1gmr1tf_di" bpmnElement="Flow_1gmr1tf">
+        <di:waypoint x="1225" y="370" />
+        <di:waypoint x="1225" y="340" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hsrgrq_di" bpmnElement="Flow_0hsrgrq">
+        <di:waypoint x="1180" y="340" />
+        <di:waypoint x="1180" y="370" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_1msgas6_di" bpmnElement="Group_1msgas6">
+        <dc:Bounds x="725" y="230" width="1010" height="220" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1189" y="237" width="83" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_10hv1n2_di" bpmnElement="Group_10hv1n2">
+        <dc:Bounds x="720" y="600" width="1015" height="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1187" y="607" width="83" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_1025xzm_di" bpmnElement="Group_1025xzm">
+        <dc:Bounds x="650" y="80" width="1150" height="700" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1186" y="87" width="78" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
